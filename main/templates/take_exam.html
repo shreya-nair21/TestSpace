@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>{{ exam.title }}</h2>
+
+<form method="POST" action="{% url 'take_exam' exam.id %}">
+    {% csrf_token %}
+
+    {% for q in questions %}
+        <div class="mb-4">
+            <strong>{{ forloop.counter }}. {{ q.text }}</strong>
+
+            {% for opt in q.option_set.all %}
+                <div class="form-check">
+                    <input type="radio" name="{{ q.id }}" value="{{ opt.id }}" class="form-check-input">
+                    <label class="form-check-label">{{ opt.text }}</label>
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+{% endblock %}
