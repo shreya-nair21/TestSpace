@@ -33,6 +33,7 @@ class Result(models.Model):
   exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
   score = models.IntegerField()
   submitted_at = models.DateTimeField(auto_now_add=True)
+  time_taken = models.IntegerField(default=0)
 
   def __str__(self):
     return f"{self.user.username} - {self.exam.title} - {self.score}"

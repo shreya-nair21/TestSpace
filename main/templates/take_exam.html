@@ -3,8 +3,13 @@
 
 <h2>{{ exam.title }}</h2>
 
-<form method="POST" action="{% url 'take_exam' exam.id %}">
+<h4>Time Remaining: <span id="timer" data-duration="{{ duration_seconds|default:0 }}"></span></h4>
+
+<form id="examForm" method="POST" action="{% url 'take_exam' exam.id %}">
     {% csrf_token %}
+
+    <!-- Hidden input to store time taken (filled by JS) -->
+    <input type="hidden" name="time_taken" id="time_taken">
 
     {% for q in questions %}
         <div class="mb-4">
@@ -17,9 +22,39 @@
                 </div>
             {% endfor %}
         </div>
+
+        <hr>
     {% endfor %}
 
     <button type="submit" class="btn btn-success">Submit</button>
 </form>
+
+<script>
+    // Timer in seconds (passed from Django)
+    let timeLeft = parseInt(document.getElementById('timer').dataset.duration, 10) || 0;
+    let totalTime = timeLeft;
+
+    function updateTimer() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+
+        document.getElementById('timer').textContent =
+            `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+        if (timeLeft <= 0) {
+            document.getElementById("examForm").submit();   // Auto-submit
+        } else {
+            timeLeft--;
+            setTimeout(updateTimer, 1000);
+        }
+    }
+
+    // Fill time_taken before submitting manually
+    document.getElementById('examForm').addEventListener('submit', function () {
+        document.getElementById('time_taken').value = totalTime - timeLeft;
+    });
+
+    updateTimer();
+</script>
 
 {% endblock %}
