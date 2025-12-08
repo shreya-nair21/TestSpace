@@ -1,13 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2> Result for {{ exam.title }}</h2>
+<div class="container mt-4">
+  <h2>Your Result:</h2>
+  <hr>
+  <h4>Score: {{ result.score }} / {{ total_questions }}</h4>
+  <h4>Percentage: {{ percentage }}%</h4>
+  <h4>Time Taken: {{ result.time_taken }} seconds </h4>
 
-<p><strong>Score:</strong>
-{{ result.score}}</p>
+  <br>
+  <h3>Review</h3>
+  <ul class="list-group">
+    {%for item in review %}
+    <li class="list-group-item">
+      <strong>Q{{ forloop.counter }}: {{ item.question }}</strong>
+      <br>
+      <span>Your Answer: {{ item.chosen_answer }}</span>
+      <br>
+      <span class="{% if item.is_correct %}text-success{% else %}text-danger{% endif %}">
+        Correct Answer: {{ item.correct_answer }}
+        {% if item.is_correct %}
+        <i class="fas fa-check"></i>
+        {% else %}
+        <i class="fas fa-times"></i>
+        {% endif %}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
 
-<a href = "/" class = "btn btn-primary mt-3">
-  Back to Home
-</a>
+  <br>
+
+  <a href="/" class="btn btn-primary">Back to Home</a>
+</div>
 
 {% endblock %}

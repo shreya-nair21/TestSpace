@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import json
 
 class Exam(models.Model):
   title = models.CharField(max_length=200)
@@ -34,6 +35,13 @@ class Result(models.Model):
   score = models.IntegerField()
   submitted_at = models.DateTimeField(auto_now_add=True)
   time_taken = models.IntegerField(default=0)
+  answers = models.JSONField(default=dict)  # Store user answers as {question_id: option_id}
+
+  def get_percentage(self):
+    total_questions = self.exam.question_set.count()
+    if total_questions == 0:
+      return 0
+    return round((self.score / total_questions) * 100, 2)
 
   def __str__(self):
     return f"{self.user.username} - {self.exam.title} - {self.score}"

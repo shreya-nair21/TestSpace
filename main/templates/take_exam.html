@@ -12,18 +12,18 @@
     <input type="hidden" name="time_taken" id="time_taken">
 
     {% for q in questions %}
-        <div class="mb-4">
-            <strong>{{ forloop.counter }}. {{ q.text }}</strong>
+    <div class="mb-4">
+        <strong>{{ forloop.counter }}. {{ q.text }}</strong>
 
-            {% for opt in q.option_set.all %}
-                <div class="form-check">
-                    <input type="radio" name="{{ q.id }}" value="{{ opt.id }}" class="form-check-input">
-                    <label class="form-check-label">{{ opt.text }}</label>
-                </div>
-            {% endfor %}
+        {% for opt in q.option_set.all %}
+        <div class="form-check">
+            <input type="radio" name="{{ q.id }}" value="{{ opt.id }}" class="form-check-input">
+            <label class="form-check-label">{{ opt.text }}</label>
         </div>
+        {% endfor %}
+    </div>
 
-        <hr>
+    <hr>
     {% endfor %}
 
     <button type="submit" class="btn btn-success">Submit</button>

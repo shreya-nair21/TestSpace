@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class = "container mt-4">
+  <h2>Your Dashboard</h2>
+  <hr>
+
+  {% if dashboard_data %}
+  <table class = "table table-bordered table-striped mt-3">
+    <thead class = "table-dark">
+      <tr>
+        <th>Exam</th>
+        <th>Score</th>
+        <th>Percentage</th>
+        <th>Time Taken(seconds)</th>
+        <th>Date</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+      {% for item in dashboard_data %}
+      <tr>
+        <td>{{item.exam_title}}</td>
+        <td>{{item.score}} / {{ item.total }}</td>
+        <td>{{item.percentage}}%</td>
+        <td>{{item.time_taken}}</td>
+        <td>{{item.date|date:"M d, Y H:i"}}</td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+  {% else %}
+  <p class = "text-muted">You haven't attempted any exams yet.</p>
+  {% endif %}
+</div>
+{% endblock %}
