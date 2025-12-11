@@ -61,8 +61,7 @@ Check out the deployed app here:
 ---
 
 ## 💻 Run Locally
-1. Clone the repository
-git clone https://github.com/<your-username>/TestSpace
+1. Clone the repository: git clone https://github.com/<your-username>/TestSpace
 cd TestSpace
 
 2. Install dependencies
