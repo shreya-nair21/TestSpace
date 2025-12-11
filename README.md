@@ -1,46 +1,97 @@
-TestSpace – Online Exam Portal
+#📝 TestSpace – Online Exam Portal
 
-TestSpace is a full-featured online examination platform built using Django, where students can take tests and instructors/admins can manage question banks, conduct exams, and view results in real-time.
+A fully functional, web-based online examination system built using Django. TestSpace allows students to attempt exams smoothly and enables administrators to create, manage, and evaluate tests with ease.
+---
+##🚀 Features
+###👤 User Management
 
-🚀 Live Demo: https://testspace-yjyp.onrender.com
+Student login & registration
 
-(Hosted on Render)
-
-✨ Features
-👤 User System
-
-Secure login & registration
+Secure authentication
 
 Role-based access (Admin / Student)
 
-Student dashboard with ongoing & completed tests
+###📝 Exam System
 
-📝 Exam Management
+Create and manage exams
 
-Create, update, and delete exams
+Supports MCQs & descriptive questions
 
-Timed exams with automatic submission
+Timer-based exams with auto-submission
 
-Randomized questions (optional)
+Random question ordering (optional)
 
-MCQ & theory questions (depend on your implementation)
+###📊 Results & Evaluation
 
-📊 Results & Analytics
+Automatic scoring for MCQs
 
-Auto-evaluated MCQs
+Submission records for each exam
 
-Result storage and display
+Student-wise and exam-wise result views
 
-Admin-side result overview
+###🎨 UI / UX
 
-⚙️ Tech Stack
+Clean, responsive design
+
+Dashboard for Students & Admin
+---
+##🛠 Tech Stack
 
 Backend: Django, Python
 
 Frontend: HTML, CSS, Bootstrap
 
-Database: SQLite / PostgreSQL (Render deployment)
+Database: SQLite (local) / PostgreSQL (Render)
 
-Deployment: Render web service
+Deployment: Render
 
 Version Control: Git + GitHub
+
+---
+##🖥️ Live Demo
+
+Check out the deployed app here:
+👉 https://testspace-yjyp.onrender.com
+---
+##💻 Run Locally
+1. Clone the repository
+git clone https://github.com/<your-username>/TestSpace
+cd TestSpace
+
+2. Install dependencies
+pip install -r requirements.txt
+
+3. Set environment variables
+
+Create a .env file:
+
+SECRET_KEY=your_secret_key_here
+DEBUG=True
+
+4. Apply migrations
+python manage.py migrate
+
+5. Start the development server
+python manage.py runserver
+
+
+Visit: http://127.0.0.1:8000/
+---
+##🚢 Deployment (Render)
+
+Add environment variables:
+
+SECRET_KEY=your_secret_key_without_quotes
+DEBUG=False
+
+
+Add allowed host in settings
+
+Use gunicorn testspace.wsgi as start command
+
+Configure static files (STATIC_ROOT, collectstatic)
+---
+##👩‍💻 Author
+
+Shreya Nair
+---
