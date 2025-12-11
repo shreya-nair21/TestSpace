@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Exam, Question, Option, Result
 from django.contrib.auth.models import User
 
+@login_required(login_url='login')
 def home(request):
   exams = Exam.objects.all()
   return render(request, 'home.html', {'exams': exams})

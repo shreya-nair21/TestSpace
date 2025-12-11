@@ -1,37 +1,64 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container mt-4">
-  <h2>Your Result:</h2>
-  <hr>
-  <h4>Score: {{ result.score }} / {{ total_questions }}</h4>
-  <h4>Percentage: {{ percentage }}%</h4>
-  <h4>Time Taken: {{ result.time_taken }} seconds </h4>
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 mb-4">
+    <div class="card-header bg-primary text-white text-center py-4">
+      <h2 class="mb-0">Exam Results</h2>
+    </div>
+    <div class="card-body p-4">
+      <!-- Score Section -->
+      <div class="row text-center mb-4">
+        <div class="col-md-4">
+          <div class="card bg-light border-0 h-100">
+            <div class="card-body">
+              <h5 class="text-muted">Score</h5>
+              <h3 class="fw-bold">{{ result.score }} / {{ total_questions }}</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card bg-light border-0 h-100">
+            <div class="card-body">
+              <h5 class="text-muted">Percentage</h5>
+              <h3 class="fw-bold {% if percentage >= 50 %}text-success{% else %}text-danger{% endif %}">{{ percentage}} %</h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card bg-light border-0 h-100">
+            <div class="card-body">
+              <h5 class="text-muted">Time Taken</h5>
+              <h3 class="fw-bold">{{ result.time_taken }}s</h3>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <br>
-  <h3>Review</h3>
-  <ul class="list-group">
-    {%for item in review %}
-    <li class="list-group-item">
-      <strong>Q{{ forloop.counter }}: {{ item.question }}</strong>
-      <br>
-      <span>Your Answer: {{ item.chosen_answer }}</span>
-      <br>
-      <span class="{% if item.is_correct %}text-success{% else %}text-danger{% endif %}">
-        Correct Answer: {{ item.correct_answer }}
-        {% if item.is_correct %}
-        <i class="fas fa-check"></i>
-        {% else %}
-        <i class="fas fa-times"></i>
-        {% endif %}
-      </span>
-    </li>
-    {% endfor %}
-  </ul>
+      <hr>
 
-  <br>
-
-  <a href="/" class="btn btn-primary">Back to Home</a>
+      <h4 class="mb-3">Detailed Review</h4>
+      <div class="list-group">
+        {% for item in review %}
+        <div
+          class="list-group-item list-group-item-action flex-column align-items-start bg-opacity-10 {% if item.is_correct %}list-group-item-success{% else %}list-group-item-danger{% endif %}">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Q{{ forloop.counter }}: {{ item.question }}</h5>
+            <small>{% if item.is_correct %}<span class="badge bg-success">Correct</span>{% else %}<span
+                class="badge bg-danger">Incorrect</span>{% endif %}</small>
+          </div>
+          <p class="mb-1">
+            <strong>Your Answer:</strong> {{ item.chosen_answer }} <br>
+            <strong>Correct Answer:</strong> {{ item.correct_answer }}
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="card-footer text-center bg-white border-0 py-3">
+      <a href="/" class="btn btn-primary btn-lg">Back to Home</a>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
