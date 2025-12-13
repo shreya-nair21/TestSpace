@@ -62,12 +62,13 @@ Check out the deployed app here:
 
 ## 💻 Run Locally
 1. Clone the repository: git clone <https://github.com/shreya-nair21/TestSpace>
+   
 cd TestSpace
 
-2. Install dependencies
+3. Install dependencies
 pip install -r requirements.txt
 
-3. Set environment variables
+4. Set environment variables
 
 Create a .env file:
 
@@ -89,7 +90,7 @@ Visit: http://127.0.0.1:8000/
 
 Add environment variables:
 
-SECRET_KEY=your_secret_key_without_quotes
+SECRET_KEY=your_secret_key
 DEBUG=False
 
 
