@@ -70,10 +70,10 @@ pip install -r requirements.txt
 
 4. Set environment variables
 
-Create a .env file:
+   Create a .env file:
 
-SECRET_KEY=your_secret_key_here
-DEBUG=True
+   SECRET_KEY=your_secret_key
+   DEBUG=True
 
 5. Apply migrations
 python manage.py migrate
@@ -84,26 +84,6 @@ python manage.py runserver
 
 ---
 
-## 🚢 Deployment (Render)
-
-Add environment variables:
-
-SECRET_KEY=your_secret_key
-DEBUG=False
-
-
-Add your Render domain to ALLOWED_HOSTS
-
-Use:
-
-gunicorn testspace.wsgi
-
-
-as the start command
-
-Configure static files with STATIC_ROOT and collectstatic
-
----
 
 ## 👩‍💻 Author
 Shreya Nair
