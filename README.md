@@ -75,14 +75,12 @@ Create a .env file:
 SECRET_KEY=your_secret_key_here
 DEBUG=True
 
-4. Apply migrations
+5. Apply migrations
 python manage.py migrate
 
-5. Start the development server
+6. Start the development server
 python manage.py runserver
 
-
-Visit: http://127.0.0.1:8000/
 
 ---
 
