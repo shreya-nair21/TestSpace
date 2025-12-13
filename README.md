@@ -63,7 +63,7 @@ Check out the deployed app here:
 ## 💻 Run Locally
 1. Clone the repository: git clone <https://github.com/shreya-nair21/TestSpace>
    
-cd TestSpace
+2. cd TestSpace
 
 3. Install dependencies
 pip install -r requirements.txt
